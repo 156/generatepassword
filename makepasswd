@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+
+my $type=1;
+my $length=1;
+
+($length, $type) = @ARGV or do { $length=8; $type = 1;};
+
+if ($type eq 3) { @chars = ( "A" .. "Z", "a" .. "z", 0 .. 9, qw(! @ $ % ^ & *) ); }
+if ($type eq 2) { @chars = ( "A" .. "Z", "a" .. "z", 0 .. 9 ); }
+if ($type eq 1) { @chars = ( "A" .. "Z", "a" .. "z" ); }
+
+$password = join("", @chars[ map { rand @chars } ( 1 .. $length ) ]);
+
+print $password . "\n";
